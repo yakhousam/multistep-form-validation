@@ -1,0 +1,10 @@
+.h1 {
+  color: #888;
+  font-size: 0.8rem;
+}
+.strong {
+  display: block;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}

@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.title {
+  color: #888;
+}
+.icon {
+  height: 40px;
+  width: 40px;
+  background-color: #494a7c;
+  border-radius: 50%;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  border: solid 2px #888;
+  border-radius: 50%;
+  transform: translateX(50%);
+  background-color: #02044a;
+  margin-left: auto;
+}
+
+.icon.active {
+  background-color: #25cc89;
+  color: #fff;
+}
+
+.dot.active {
+  border: none;
+  background-color: #25cc89;
+}

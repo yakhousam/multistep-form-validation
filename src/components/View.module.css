@@ -1,0 +1,21 @@
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  height: 80vh;
+  min-height: fit-content;
+  width: 80%;
+  background-color: #02044a;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+}
+.wrapper {
+  flex: 1;
+  display: flex;
+  border-top: solid thin #888;
+}
