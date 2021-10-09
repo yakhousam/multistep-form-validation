@@ -8,6 +8,7 @@
   height: 80vh;
   min-height: fit-content;
   width: 80%;
+  max-width: 1200px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -17,4 +18,5 @@
   flex: 1;
   display: flex;
   border-top: solid 2px var(--border);
+  margin-left: 2rem;
 }

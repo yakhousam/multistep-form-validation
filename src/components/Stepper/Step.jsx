@@ -1,13 +1,12 @@
-import { FaMapMarkerAlt } from "react-icons/fa";
 import styles from "./Step.module.css";
-export function Step({ active }) {
+export function Step({ active, title, icon }) {
   return (
     <div className={styles.container}>
       <div className={`${styles.title} ${active ? styles.active : ""}`}>
-        Your Name
+        {title}
       </div>
       <div className={`${styles.icon} ${active ? styles.active : ""}`}>
-        <FaMapMarkerAlt size={20} />
+        {icon}
       </div>
       <div className={`${styles.dot} ${active ? styles.active : ""}`}></div>
     </div>
