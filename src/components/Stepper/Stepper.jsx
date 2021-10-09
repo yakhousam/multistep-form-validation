@@ -4,9 +4,14 @@ import styles from "./Stepper.module.css";
 import { FaMapMarkerAlt, FaAddressCard, FaCar } from "react-icons/fa";
 
 const steps = [
-  { id: 1, title: "Your Location", icon: <FaMapMarkerAlt />, active: true },
-  { id: 2, title: "Your informations", icon: <FaAddressCard /> },
-  { id: 3, title: "Your vehicle", icon: <FaCar /> },
+  { id: 1, title: "Your Location", icon: <FaMapMarkerAlt />, url: "/" },
+  {
+    id: 2,
+    title: "Your informations",
+    icon: <FaAddressCard />,
+    url: "/driver",
+  },
+  { id: 3, title: "Your vehicle", icon: <FaCar />, url: "/vehicle" },
 ];
 
 export function Stepper() {

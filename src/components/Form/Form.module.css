@@ -12,3 +12,29 @@
   line-height: 1.5;
   color: var(--text-color-primary);
 }
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 50px;
+}
+.btn-next {
+  padding: 15px 30px;
+  border-radius: 50px;
+  background-color: var(--color-secondary);
+  color: var(--text-color-ternary);
+  font-size: 1rem;
+  text-decoration: none;
+}
+.btn-next:hover {
+  background-color: var(--color-primary);
+  color: var(--text-color-primary);
+}
+.btn-back {
+  margin-right: 2rem;
+  color: var(--text-color-ternary);
+  text-decoration: none;
+}
+.btn-back:hover {
+  color: var(--text-color-primary);
+}

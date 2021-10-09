@@ -1,4 +1,4 @@
-import { Form } from "./Form/Form";
+import { MultiStepForm } from "./Form/Form";
 import { Header } from "./Header/Header";
 import { Stepper } from "./Stepper/Stepper";
 import styles from "./View.module.css";
@@ -10,7 +10,7 @@ export function View() {
         <Header />
         <div className={styles.wrapper}>
           <Stepper />
-          <Form />
+          <MultiStepForm />
         </div>
       </div>
     </main>
