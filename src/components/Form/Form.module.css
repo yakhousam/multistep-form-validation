@@ -3,11 +3,12 @@
   padding-left: 2rem;
 }
 .h1 {
-  font-size: 0.8rem;
-  color: #888;
+  font-size: 1rem;
+  color: var(--text-color-secondary);
 }
 .strong {
   display: block;
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: var(--text-color-primary);
 }

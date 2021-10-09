@@ -1,7 +1,18 @@
+:root {
+  --background-color: #02044a;
+  --color-primary: #25cc88;
+  --color-secondary: #494a7d;
+  --border: rgba(73, 74, 125, 0.32);
+  --border-hover: #fff;
+  --border-active: #2db27c;
+  --text-color-primary: #fff;
+  --text-color-secondary: #8687a8;
+}
 html,
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--background-color);
 }
 
 * {

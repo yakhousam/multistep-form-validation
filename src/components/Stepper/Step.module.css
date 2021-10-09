@@ -4,14 +4,18 @@
   margin-bottom: 2rem;
 }
 .title {
-  color: #888;
+  font-weight: bold;
+  color: var(--text-color-secondary);
+}
+.title.active {
+  color: var(--text-color-primary);
 }
 .icon {
   height: 40px;
   width: 40px;
-  background-color: #494a7c;
+  background-color: var(--color-secondary);
   border-radius: 50%;
-  color: #888;
+  color: var(--text-color-secondary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,19 +24,19 @@
 .dot {
   height: 15px;
   width: 15px;
-  border: solid 2px #888;
+  border: solid 2px var(--border);
   border-radius: 50%;
   transform: translateX(50%);
-  background-color: #02044a;
+  background-color: var(--background-color);
   margin-left: auto;
 }
 
 .icon.active {
-  background-color: #25cc89;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--text-color-primary);
 }
 
 .dot.active {
   border: none;
-  background-color: #25cc89;
+  background-color: var(--color-primary);
 }

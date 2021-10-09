@@ -2,6 +2,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-right: solid thin #888;
+  border-right: solid 2px var(--border);
   padding: 1.5rem 0 0 0.5rem;
 }
