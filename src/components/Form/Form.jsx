@@ -2,6 +2,7 @@ import styles from "./Form.module.css";
 
 import { Switch, Route, Redirect, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { BiCurrentLocation } from "react-icons/bi";
 
 export function MultiStepForm() {
   return (
@@ -55,7 +56,18 @@ function StepLocation() {
         </strong>
       </h1>
       <label htmlFor="location">Location</label>
-      <Field type="text" id="location" name="location" />
+      <div className={styles["input-container"]}>
+        <Field
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Please, click button location or enter your location"
+        />
+        <BiCurrentLocation
+          className={styles["icon-location"]}
+          onClick={() => console.log("location....")}
+        />
+      </div>
       <ErrorMessage name="location" component="div" />
       <Navigation nextUrl="/driver" />
     </>
@@ -101,10 +113,20 @@ function StepDriverOne() {
         <strong className={styles.strong}>Please enter your name</strong>
       </h1>
       <label htmlFor="firstName">First Name</label>
-      <Field type="text" id="firstName" name="firstName" />
+      <Field
+        type="text"
+        id="firstName"
+        name="firstName"
+        placeholder="Your first name"
+      />
       <ErrorMessage name="firstName" component="div" />
       <label htmlFor="lastName">Last Name</label>
-      <Field type="text" id="lastName" name="lastName" />
+      <Field
+        type="text"
+        id="lastName"
+        name="lastName"
+        placeholder="Your last name"
+      />
       <ErrorMessage name="lastName" component="div" />
       <Navigation backUrl="/" nextUrl="/driver/2" />
     </>
@@ -120,7 +142,12 @@ function StepDriverTwo() {
         </strong>
       </h1>
       <label htmlFor="license">License</label>
-      <Field type="text" id="license" name="license" />
+      <Field
+        type="text"
+        id="license"
+        name="license"
+        placeholder="Your license number"
+      />
       <ErrorMessage name="license" component="div" />
       <label>
         <Field type="checkbox" name="expired" />
@@ -138,7 +165,12 @@ function StepVehicle() {
         <strong className={styles.strong}>Please enter your vehicle</strong>
       </h1>
       <label htmlFor="vehicle">Vehicle</label>
-      <Field type="text" id="vehicle" name="vehicle" />
+      <Field
+        type="text"
+        id="vehicle"
+        name="vehicle"
+        placeholder="Your vehicle mark"
+      />
       <ErrorMessage name="vehicle" component="div" />
       <Navigation backUrl="/driver/2" />
     </>

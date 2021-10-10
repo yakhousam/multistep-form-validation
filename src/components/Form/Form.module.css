@@ -57,6 +57,7 @@
   outline: none;
   margin-bottom: 1rem;
 }
+
 .form input:hover {
   border-color: var(--border-hover);
 }
@@ -68,4 +69,38 @@
   color: var(--text-color-primary);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
+}
+
+.input-container {
+  position: relative;
+}
+.input-container input[type="text"] {
+  margin-bottom: 0;
+}
+.icon-location {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 2rem;
+  color: var(--text-color-secondary);
+  cursor: pointer;
+  animation: location 500ms linear 1s 2;
+}
+.icon-location:hover {
+  color: var(--text-color-primary);
+}
+
+@keyframes location {
+  to {
+    color: var(--text-color-primary);
+    transform: translateY(-50%) scale(1.1);
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0px 9999px var(--background-color);
+  box-shadow: inset 0 0 0px 9999px var(--background-color);
+  -webkit-text-fill-color: var(--text-color-primary) !important;
 }
