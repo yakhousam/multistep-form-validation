@@ -1,10 +1,13 @@
-.container {
+.form {
+  flex: 1;
   padding-top: 1.5rem;
   padding-left: 2rem;
+  padding: 2rem;
 }
 .h1 {
   font-size: 1rem;
   color: var(--text-color-secondary);
+  margin-bottom: 4rem;
 }
 .strong {
   display: block;
@@ -16,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 50px;
+  margin-top: 2rem;
 }
 .btn-next {
   padding: 15px 30px;
@@ -25,16 +28,44 @@
   color: var(--text-color-ternary);
   font-size: 1rem;
   text-decoration: none;
+  margin-left: 2rem;
 }
 .btn-next:hover {
   background-color: var(--color-primary);
   color: var(--text-color-primary);
 }
 .btn-back {
-  margin-right: 2rem;
   color: var(--text-color-ternary);
   text-decoration: none;
 }
 .btn-back:hover {
   color: var(--text-color-primary);
+}
+.form input[type="text"] {
+  width: 100%;
+  height: 64px;
+  padding: 8px 12px;
+  line-height: 1.5;
+  padding-left: 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background-color: transparent;
+  transition: all 200ms ease;
+  color: var(--text-color-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 1rem;
+}
+.form input:hover {
+  border-color: var(--border-hover);
+}
+.form input:focus {
+  border-color: var(--border-focus);
+}
+.form label {
+  display: block;
+  color: var(--text-color-primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }

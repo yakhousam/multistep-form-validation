@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export function MultiStepForm() {
   return (
-    <div className={styles.container}>
+    <>
       <Formik
         initialValues={{}}
         validate={(values) => {
@@ -27,7 +27,7 @@ export function MultiStepForm() {
         }}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className={styles.form}>
             <Switch>
               <Route exact path="/">
                 <StepLocation />
@@ -42,7 +42,7 @@ export function MultiStepForm() {
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 }
 function StepLocation() {
@@ -54,7 +54,8 @@ function StepLocation() {
           Let's start with your location
         </strong>
       </h1>
-      <Field type="text" name="location" />
+      <label htmlFor="location">Location</label>
+      <Field type="text" id="location" name="location" />
       <ErrorMessage name="location" component="div" />
       <Navigation nextUrl="/driver" />
     </>
@@ -99,9 +100,11 @@ function StepDriverOne() {
         step 2/3
         <strong className={styles.strong}>Please enter your name</strong>
       </h1>
-      <Field type="text" name="firstName" />
+      <label htmlFor="firstName">First Name</label>
+      <Field type="text" id="firstName" name="firstName" />
       <ErrorMessage name="firstName" component="div" />
-      <Field type="text" name="lastName" />
+      <label htmlFor="lastName">Last Name</label>
+      <Field type="text" id="lastName" name="lastName" />
       <ErrorMessage name="lastName" component="div" />
       <Navigation backUrl="/" nextUrl="/driver/2" />
     </>
@@ -116,7 +119,8 @@ function StepDriverTwo() {
           Please enter your license number
         </strong>
       </h1>
-      <Field type="text" name="license" />
+      <label htmlFor="license">License</label>
+      <Field type="text" id="license" name="license" />
       <ErrorMessage name="license" component="div" />
       <label>
         <Field type="checkbox" name="expired" />
@@ -133,7 +137,8 @@ function StepVehicle() {
         step 3/3
         <strong className={styles.strong}>Please enter your vehicle</strong>
       </h1>
-      <Field type="text" name="vehicle" />
+      <label htmlFor="vehicle">Vehicle</label>
+      <Field type="text" id="vehicle" name="vehicle" />
       <ErrorMessage name="vehicle" component="div" />
       <Navigation backUrl="/driver/2" />
     </>
