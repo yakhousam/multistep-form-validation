@@ -23,12 +23,9 @@ export const validation = (values, path) => {
       break;
     }
     case "/vehicle": {
-      for (const key of Object.keys(values)) {
-        if (!values[key]) {
-          errors[key] = "Required";
-        }
+      if (!values.vehicle) {
+        errors.vehicle = "Required";
       }
-
       break;
     }
     default:
