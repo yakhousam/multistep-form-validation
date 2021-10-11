@@ -1,49 +1,69 @@
 import styles from "./Form.module.css";
 
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Redirect,
+  Link,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { BiCurrentLocation } from "react-icons/bi";
+import { validation } from "./form-validatiion";
 
 export function MultiStepForm() {
+  const history = useHistory();
+  const location = useLocation();
+  const path = location.pathname;
+
+  const handleValidation = (values) => validation(values, path);
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    switch (path) {
+      case "/":
+        return history.push("/driver/1");
+      case "/driver/1":
+        return history.push("/driver/2");
+      case "/driver/2":
+        return history.push("/vehicle");
+      default: {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }
+    }
+  };
   return (
-    <>
-      <Formik
-        initialValues={{}}
-        validate={(values) => {
-          const errors = {};
-          // if (!values.email) {
-          //   errors.email = "Required";
-          // } else if (
-          //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          // ) {
-          //   errors.email = "Invalid email address";
-          // }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form className={styles.form}>
-            <Switch>
-              <Route exact path="/">
-                <StepLocation />
-              </Route>
-              <Route path="/driver">
-                <StepDriver />
-              </Route>
-              <Route path="/vehicle">
-                <StepVehicle />
-              </Route>
-            </Switch>
-          </Form>
-        )}
-      </Formik>
-    </>
+    <Formik
+      initialValues={{
+        location: "",
+        firstName: "",
+        lastName: "",
+        license: "",
+        expired: false,
+        vehicle: "",
+      }}
+      validate={handleValidation}
+      onSubmit={handleSubmit}
+    >
+      {(props) => (
+        <Form className={styles.form}>
+          <Switch>
+            <Route exact path="/">
+              <StepLocation {...props} />
+            </Route>
+            <Route path="/driver">
+              <StepDriver />
+            </Route>
+            <Route path="/vehicle">
+              <StepVehicle />
+            </Route>
+          </Switch>
+        </Form>
+      )}
+    </Formik>
   );
 }
 function StepLocation() {
@@ -68,12 +88,16 @@ function StepLocation() {
           onClick={() => console.log("location....")}
         />
       </div>
-      <ErrorMessage name="location" component="div" />
-      <Navigation nextUrl="/driver" />
+        <ErrorMessage
+          name="location"
+          component="div"
+          className={styles.error}
+        />
+      <Navigation />
     </>
   );
 }
-function Navigation({ backUrl, nextUrl }) {
+function Navigation({ backUrl }) {
   return (
     <div className={styles["btn-wrapper"]}>
       {backUrl && (
@@ -81,11 +105,10 @@ function Navigation({ backUrl, nextUrl }) {
           Back
         </Link>
       )}
-      {nextUrl && (
-        <Link className={styles["btn-next"]} to={nextUrl}>
-          Next
-        </Link>
-      )}
+
+      <button type="submit" className={styles["btn-next"]}>
+        Next
+      </button>
     </div>
   );
 }
@@ -119,7 +142,7 @@ function StepDriverOne() {
         name="firstName"
         placeholder="Your first name"
       />
-      <ErrorMessage name="firstName" component="div" />
+      <ErrorMessage className={styles.error} name="firstName" component="div" />
       <label htmlFor="lastName">Last Name</label>
       <Field
         type="text"
@@ -127,8 +150,8 @@ function StepDriverOne() {
         name="lastName"
         placeholder="Your last name"
       />
-      <ErrorMessage name="lastName" component="div" />
-      <Navigation backUrl="/" nextUrl="/driver/2" />
+      <ErrorMessage className={styles.error} name="lastName" component="div" />
+      <Navigation backUrl="/" />
     </>
   );
 }
@@ -148,12 +171,12 @@ function StepDriverTwo() {
         name="license"
         placeholder="Your license number"
       />
-      <ErrorMessage name="license" component="div" />
+      <ErrorMessage className={styles.error} name="license" component="div" />
       <label>
         <Field type="checkbox" name="expired" />
         Expired?
       </label>
-      <Navigation backUrl="/driver/1" nextUrl="/vehicle" />
+      <Navigation backUrl="/driver/1" />
     </>
   );
 }
@@ -171,7 +194,7 @@ function StepVehicle() {
         name="vehicle"
         placeholder="Your vehicle mark"
       />
-      <ErrorMessage name="vehicle" component="div" />
+      <ErrorMessage className={styles.error} name="vehicle" component="div" />
       <Navigation backUrl="/driver/2" />
     </>
   );
