@@ -48,17 +48,21 @@ export function MultiStepForm() {
       validate={handleValidation}
       onSubmit={handleSubmit}
     >
-      {(props) => (
+      {({ values }) => (
         <Form className={styles.form}>
           <Switch>
             <Route exact path="/">
-              <StepLocation {...props} />
+              <StepLocation />
             </Route>
             <Route path="/driver">
-              <StepDriver />
+              {!values.location ? <Redirect to="/" /> : <StepDriver />}
             </Route>
             <Route path="/vehicle">
-              <StepVehicle />
+              {!values.firstName || !values.license ? (
+                <Redirect to="/driver" />
+              ) : (
+                <StepVehicle />
+              )}
             </Route>
           </Switch>
         </Form>
@@ -88,11 +92,7 @@ function StepLocation() {
           onClick={() => console.log("location....")}
         />
       </div>
-        <ErrorMessage
-          name="location"
-          component="div"
-          className={styles.error}
-        />
+      <ErrorMessage name="location" component="div" className={styles.error} />
       <Navigation />
     </>
   );
