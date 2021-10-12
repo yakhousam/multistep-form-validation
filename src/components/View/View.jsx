@@ -1,6 +1,6 @@
-import { MultiStepForm } from "./Form/Form";
-import { Header } from "./Header/Header";
-import { Stepper } from "./Stepper/Stepper";
+import { MultiStepForm } from "../MultiStepForm";
+import { Header } from "../Header";
+import { Stepper } from "../Stepper";
 import styles from "./View.module.css";
 
 export function View() {

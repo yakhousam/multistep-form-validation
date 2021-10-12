@@ -1,0 +1,29 @@
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+.btn-next {
+  padding: 15px 30px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: none;
+  background-color: var(--color-secondary);
+  color: var(--text-color-ternary);
+  font-size: 1rem;
+  text-decoration: none;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.btn-next:hover {
+  background-color: var(--color-primary);
+  color: var(--text-color-primary);
+}
+.btn-back {
+  color: var(--text-color-ternary);
+  text-decoration: none;
+}
+.btn-back:hover {
+  color: var(--text-color-primary);
+}

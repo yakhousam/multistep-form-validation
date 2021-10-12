@@ -1,9 +1,9 @@
-import React from "react";
-import { Navigation } from "../components/Form/Navigation";
+import { MemoryRouter } from "react-router-dom";
+import { Navigation } from "./Navigation";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Example/Navigation",
+  title: "Components/Navigation",
   component: Navigation,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // argTypes: {
@@ -12,7 +12,11 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => <Navigation {...args} />;
+const Template = (args) => (
+  <MemoryRouter>
+    <Navigation {...args} />
+  </MemoryRouter>
+);
 
 export const NavigationNext = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

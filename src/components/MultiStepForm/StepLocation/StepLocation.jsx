@@ -1,20 +1,22 @@
-import styles from "./Form.module.css";
+import styles from "./StepLocation.module.css";
+import stepsStyles from "../Steps.module.css";
 import { BiCurrentLocation } from "react-icons/bi";
 import { ErrorMessage, Field } from "formik";
-import { Navigation } from "./Navigation";
+import { Navigation } from "../Navigation";
 
 export function StepLocation() {
   return (
     <>
-      <h1 className={styles.h1}>
+      <h1 className={stepsStyles.h1}>
         step 1/3
-        <strong className={styles.strong}>
+        <strong className={stepsStyles.strong}>
           Let's start with your location
         </strong>
       </h1>
       <label htmlFor="location">Location</label>
       <div className={styles["input-container"]}>
         <Field
+          className={stepsStyles.input}
           type="text"
           id="location"
           name="location"
@@ -25,7 +27,11 @@ export function StepLocation() {
           onClick={() => console.log("location....")}
         />
       </div>
-      <ErrorMessage name="location" component="div" className={styles.error} />
+      <ErrorMessage
+        name="location"
+        component="div"
+        className={stepsStyles.error}
+      />
       <Navigation />
     </>
   );

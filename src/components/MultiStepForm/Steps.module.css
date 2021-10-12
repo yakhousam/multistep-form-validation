@@ -1,0 +1,46 @@
+.h1 {
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 4rem;
+}
+.strong {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: var(--text-color-primary);
+}
+
+.input[type="text"] {
+  width: 100%;
+  height: 64px;
+  padding: 8px 12px;
+  line-height: 1.5;
+  padding-left: 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background-color: transparent;
+  transition: all 200ms ease;
+  color: var(--text-color-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.input:hover {
+  border-color: var(--border-hover);
+}
+.input:focus {
+  border-color: var(--border-focus);
+}
+.label {
+  display: block;
+  color: var(--text-color-primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.error {
+  color: var(--error);
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
