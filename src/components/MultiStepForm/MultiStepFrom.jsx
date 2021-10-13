@@ -59,7 +59,9 @@ export function MultiStepForm() {
               {!values.location ? <Redirect to="/" /> : <StepDriver />}
             </Route>
             <Route path="/vehicle">
-              {!values.firstName || !values.license ? (
+              {!values.location ? (
+                <Redirect to="/" />
+              ) : !values.firstName || !values.license ? (
                 <Redirect to="/driver" />
               ) : (
                 <StepVehicle />

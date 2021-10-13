@@ -18,7 +18,8 @@ export function StepDriver() {
     </Switch>
   );
 }
-function StepDriverOne() {
+
+export function StepDriverOne() {
   return (
     <>
       <h1 className={stepsStyles.h1}>
@@ -59,7 +60,8 @@ function StepDriverOne() {
     </>
   );
 }
-function StepDriverTwo() {
+
+export function StepDriverTwo() {
   return (
     <>
       <h1 className={stepsStyles.h1}>

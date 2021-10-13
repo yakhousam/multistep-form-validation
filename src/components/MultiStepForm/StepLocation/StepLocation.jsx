@@ -13,7 +13,9 @@ export function StepLocation() {
           Let's start with your location
         </strong>
       </h1>
-      <label htmlFor="location">Location</label>
+      <label className={stepsStyles.label} htmlFor="location">
+        Location
+      </label>
       <div className={styles["input-container"]}>
         <Field
           className={stepsStyles.input}

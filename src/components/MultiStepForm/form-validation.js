@@ -5,15 +5,23 @@ export const stepLocationSchema = yup.object().shape({
 });
 
 export const stepDriverOneSchema = yup.object().shape({
+  location: yup.string().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
 });
 
 export const stepDriverTwoSchema = yup.object().shape({
+  location: yup.string().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
   license: yup.string().required(),
 });
 
 export const stepVehicleSchema = yup.object().shape({
+  location: yup.string().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  license: yup.string().required(),
   vehicle: yup.string().required(),
 });
 
@@ -35,10 +43,3 @@ export const validation = (path) => {
       break;
   }
 };
-
-export const schema = yup
-  .object()
-  .concat(stepLocationSchema)
-  .concat(stepDriverOneSchema)
-  .concat(stepDriverTwoSchema)
-  .concat(stepVehicleSchema);
