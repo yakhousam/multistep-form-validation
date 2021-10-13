@@ -1,19 +1,22 @@
 import { StepLocation } from "./StepLocation";
-import { Formik } from "formik";
+import withFormik from "storybook-formik";
+import { stepLocationSchema } from "../form-validation";
 
 export default {
-  title: "Component/StepLocation",
-  component: StepLocation,
+  title: "Components/StepLocation",
+  // component: StepLocation,
 };
 
-const Template = (args) => (
-  <Formik initialValues={{ location: "" }}>
-    <StepLocation {...args} />
-  </Formik>
-);
+export const Location = () => <StepLocation />;
 
-export const Location = Template.bind({});
+const locationParameters = {
+  formik: {
+    initialValues: { location: "" },
+    validationSchema: stepLocationSchema,
+  },
+};
 
-Location.args = {
-  errors: { location: "Required" },
+Location.story = {
+  decorators: [withFormik],
+  parameters: locationParameters,
 };
