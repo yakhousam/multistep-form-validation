@@ -8,7 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Formik, Form } from "formik";
-import { validation } from "./form-validation";
+import { initialValues, validation, onSubmit } from "./form-utils";
 import { StepLocation } from "./StepLocation";
 import { StepDriver } from "./StepDriver";
 import { StepVehicle } from "./StepVehicle";
@@ -20,32 +20,11 @@ export function MultiStepForm() {
 
   const handleValidation = () => validation(path);
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    switch (path) {
-      case "/":
-        return history.push("/driver/1");
-      case "/driver/1":
-        return history.push("/driver/2");
-      case "/driver/2":
-        return history.push("/vehicle");
-      default: {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }
-    }
-  };
+  const handleSubmit = (values, formikBag) =>
+    onSubmit(values, formikBag, history, path);
   return (
     <Formik
-      initialValues={{
-        location: "",
-        firstName: "",
-        lastName: "",
-        license: "",
-        expired: false,
-        vehicle: "",
-      }}
+      initialValues={initialValues}
       validationSchema={handleValidation}
       onSubmit={handleSubmit}
     >

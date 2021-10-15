@@ -10,7 +10,7 @@ jest.mock("../form-utils/initialValues.js", () => ({
     location: "here",
     firstName: "my first name",
     lastName: "my last name",
-    license: "my license",
+    license: "",
     expired: false,
     vehicle: "",
   },
@@ -20,40 +20,39 @@ jest.mock("../form-utils/onSubmit.js", () => ({
   onSubmit: jest.fn(),
 }));
 
-const StepVehicle = () => (
-  <MemoryRouter initialEntries={["/vehicle"]}>
+const StepDriverTwo = () => (
+  <MemoryRouter initialEntries={["/driver/2"]}>
     <MultiStepForm />
   </MemoryRouter>
 );
 
-describe("component StepVehicle", () => {
+describe("component StepDriverTwo", () => {
   test("render", () => {
-    render(<StepVehicle />);
+    render(<StepDriverTwo />);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      /Please enter your vehicle/i
+      /lease enter your license number/i
     );
-    expect(screen.getByLabelText(/vehicle/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/license/i)).toBeInTheDocument();
   });
 
   test("submit data on click button next", async () => {
-    render(<StepVehicle />);
-    const vehicle = "my vehicle";
-    userEvent.type(screen.getByLabelText(/vehicle/i), vehicle);
-    expect(screen.getByLabelText(/vehicle/i).value).toBe(vehicle);
+    render(<StepDriverTwo />);
+    const license = "my license";
+    userEvent.type(screen.getByLabelText(/license/i), license);
     userEvent.click(screen.getByText(/next/i));
     await waitFor(() => {
       expect(mockedOnSubmit).toHaveBeenCalled();
     });
   });
 
-  test("should not sumbit when vehicle is empty", async () => {
-    render(<StepVehicle />);
+  test("should not sumbit when license is empty", async () => {
+    render(<StepDriverTwo />);
 
     userEvent.click(screen.getByText(/next/i));
     await waitFor(() => {
       expect(mockedOnSubmit).not.toHaveBeenCalled();
     });
-    expect(screen.getByText(/vehicle is a required/i)).toBeInTheDocument();
+    expect(screen.getByText(/license is a required/i)).toBeInTheDocument();
   });
 });

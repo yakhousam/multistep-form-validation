@@ -18,6 +18,7 @@ describe("component Navigation", () => {
   });
   test("should show button next and back when backUrl is passed to component )", () => {
     render(<NavWithRoute url={"/"} />);
-    expect(screen.getByRole("link")).toHaveTextContent(/back/i);
+    expect(screen.getByRole("link", { name: /back/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /next/i })).toBeInTheDocument();
   });
 });

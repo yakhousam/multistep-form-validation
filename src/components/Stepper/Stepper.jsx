@@ -1,9 +1,8 @@
-import { Step } from "./Step";
 import styles from "./Stepper.module.css";
-
+import { Step } from "./Step";
 import { FaMapMarkerAlt, FaAddressCard, FaCar } from "react-icons/fa";
 
-const steps = [
+export const steps = [
   { id: 1, title: "Your Location", icon: <FaMapMarkerAlt />, url: "/" },
   {
     id: 2,
