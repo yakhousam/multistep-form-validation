@@ -1,6 +1,6 @@
 import { StepLocation } from "./StepLocation";
 import withFormik from "storybook-formik";
-import { stepLocationSchema } from "../form-validation";
+import { stepLocationSchema } from "../form-utils/validation";
 
 export default {
   title: "Components/StepLocation",

@@ -2,8 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { MultiStepForm } from "../MultiStepFrom";
 import { onSubmit as mockedOnSubmit } from "../form-utils/onSubmit";
-
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import { store } from "../../../redux/store";
 
 jest.mock("../form-utils/initialValues.js", () => ({
   initialValues: {
@@ -22,11 +23,13 @@ jest.mock("../form-utils/onSubmit.js", () => ({
 
 const StepDriverTwo = () => (
   <MemoryRouter initialEntries={["/driver/2"]}>
-    <MultiStepForm />
+    <Provider store={store}>
+      <MultiStepForm />
+    </Provider>
   </MemoryRouter>
 );
 
-describe.skip("component StepDriverTwo", () => {
+describe("component StepDriverTwo", () => {
   test("render", () => {
     render(<StepDriverTwo />);
 

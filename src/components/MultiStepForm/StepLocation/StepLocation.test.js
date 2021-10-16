@@ -2,6 +2,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { MultiStepForm } from "../MultiStepFrom";
 import { onSubmit as mockedOnSubmit } from "../form-utils/onSubmit";
+import { Provider } from "react-redux";
+import { store } from "../../../redux/store";
 
 import userEvent from "@testing-library/user-event";
 
@@ -22,11 +24,13 @@ jest.mock("../form-utils/onSubmit.js", () => ({
 
 const StepLocation = () => (
   <MemoryRouter initialEntries={["/"]}>
-    <MultiStepForm />
+    <Provider store={store}>
+      <MultiStepForm />
+    </Provider>
   </MemoryRouter>
 );
 
-describe.skip("component StepLocation", () => {
+describe("component StepLocation", () => {
   test("render", () => {
     render(<StepLocation />);
 

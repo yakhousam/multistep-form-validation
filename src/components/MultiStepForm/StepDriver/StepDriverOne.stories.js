@@ -1,7 +1,7 @@
 import withFormik from "storybook-formik";
 import { MemoryRouter } from "react-router-dom";
 import { StepDriverOne } from "./StepDriver";
-import { stepDriverOneSchema } from "../form-validation";
+import { stepDriverOneSchema } from "../form-utils/validation";
 
 export default {
   title: "Components/StepDriverOne",
