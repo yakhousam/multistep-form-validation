@@ -1,4 +1,5 @@
 import styles from "./Form.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Switch,
@@ -14,14 +15,18 @@ import { StepDriver } from "./StepDriver";
 import { StepVehicle } from "./StepVehicle";
 
 export function MultiStepForm() {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const path = location.pathname;
+  console.log(state, " state");
 
   const handleValidation = () => validation(path);
 
-  const handleSubmit = (values, formikBag) =>
-    onSubmit(values, formikBag, history, path);
+  const handleSubmit = (values, formikBag) => {
+    onSubmit(values, formikBag, history, path, dispatch);
+  };
   return (
     <Formik
       initialValues={initialValues}

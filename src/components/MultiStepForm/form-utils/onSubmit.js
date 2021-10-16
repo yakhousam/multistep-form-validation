@@ -1,4 +1,10 @@
-export const onSubmit = (values, { setSubmitting }, history, path) => {
+export const onSubmit = (
+  values,
+  { setSubmitting },
+  history,
+  path,
+  dispatch
+) => {
   switch (path) {
     case "/":
       return history.push("/driver/1");
@@ -7,10 +13,14 @@ export const onSubmit = (values, { setSubmitting }, history, path) => {
     case "/driver/2":
       return history.push("/vehicle");
     default: {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 400);
+      // setTimeout(() => {
+      //   alert(JSON.stringify(values, null, 2));
+      //   setSubmitting(false);
+      // }, 400);
+      // dispatch({ action: "IS_SUBMITTING", payload: values });
+
+      // const id = Math.floor(Math.random() * 10) + 1;
+      dispatch({ type: "GET_USER", values });
     }
   }
 };
