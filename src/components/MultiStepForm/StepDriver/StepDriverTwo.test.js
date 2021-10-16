@@ -26,7 +26,7 @@ const StepDriverTwo = () => (
   </MemoryRouter>
 );
 
-describe("component StepDriverTwo", () => {
+describe.skip("component StepDriverTwo", () => {
   test("render", () => {
     render(<StepDriverTwo />);
 
