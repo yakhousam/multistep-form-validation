@@ -10,7 +10,7 @@ export function Step({ title, icon, url }) {
   return (
     <div className={styles.container}>
       <Title title={title} isActive={isActive} />
-      <Avatar url={url} icon={icon} isActive={isActive} />
+      <Avatar url={url} icon={icon} isActive={isActive} label={title} />
       <Dote isActive={isActive} />
     </div>
   );
@@ -24,11 +24,12 @@ function Title({ title, isActive }) {
   );
 }
 
-function Avatar({ url, icon, isActive }) {
+function Avatar({ url, icon, isActive, label }) {
   return (
     <Link
       to={url}
       className={`${styles.icon} ${isActive ? styles.active : ""}`}
+      aria-label={label}
     >
       {icon}
     </Link>

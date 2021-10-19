@@ -6,12 +6,12 @@ import { store } from "../../redux/store";
 import { MemoryRouter } from "react-router";
 import * as api from "./form-utils/onSubmit";
 
-let values = {
-  expired: false,
+const values = {
+  location: "heaven",
   firstName: "john",
   lastName: "doe",
   license: "123456",
-  location: "heaven",
+  expired: false,
   vehicle: "tesla",
 };
 
