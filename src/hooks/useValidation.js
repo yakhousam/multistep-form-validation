@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import * as yup from "yup";
 
 export const stepLocationSchema = yup.object().shape({
@@ -25,21 +26,36 @@ export const stepVehicleSchema = yup.object().shape({
   vehicle: yup.string().required(),
 });
 
-export const validation = (path) => {
-  switch (path) {
-    case "/": {
-      return stepLocationSchema;
+export const useValidation = () => {
+  const location = useLocation();
+  const path = location.pathname;
+
+  const validation = () => {
+    switch (path) {
+      case "/": {
+        return stepLocationSchema;
+      }
+      case "/driver/1": {
+        return stepDriverOneSchema;
+      }
+      case "/driver/2": {
+        return stepDriverTwoSchema;
+      }
+      case "/vehicle": {
+        return stepVehicleSchema;
+      }
+      default:
+        break;
     }
-    case "/driver/1": {
-      return stepDriverOneSchema;
-    }
-    case "/driver/2": {
-      return stepDriverTwoSchema;
-    }
-    case "/vehicle": {
-      return stepVehicleSchema;
-    }
-    default:
-      break;
-  }
+  };
+  return {
+    validation,
+    schema: {
+      stepLocationSchema,
+      stepVehicleSchema,
+      stepDriverOneSchema,
+      stepDriverTwoSchema,
+      stepDriver: stepDriverOneSchema.concat(stepDriverTwoSchema),
+    },
+  };
 };

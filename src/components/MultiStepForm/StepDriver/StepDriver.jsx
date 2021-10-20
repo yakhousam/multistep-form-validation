@@ -1,9 +1,14 @@
 import { ErrorMessage, Field } from "formik";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useValidation } from "../../../hooks/useValidation";
 import { Navigation } from "../Navigation";
 import stepsStyles from "../Steps.module.css";
 
-export function StepDriver() {
+export function StepDriver({ values }) {
+  const { schema } = useValidation();
+  if (!schema.stepLocationSchema.isValidSync(values)) {
+    return <Redirect to="/" />;
+  }
   return (
     <Switch>
       <Route path="/driver/1">

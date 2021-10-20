@@ -1,11 +1,17 @@
-export function reducer(state = {}, action) {
+const initialValues = {
+  location: "",
+  firstName: "",
+  lastName: "",
+  license: "",
+  expired: false,
+  vehicle: "",
+};
+
+export function reducer(state = initialValues, action) {
   switch (action.type) {
-    case "IS_FETCHING":
-      return { ...state, status: "fetching" };
-    case "SET_USER":
-      return { ...state, user: action.values, status: "success" };
-    case "SET_ERROR":
-      return { ...state, status: "error", error: action.error };
+    case "SAVE_FORM":
+      return { ...action.values };
+
     default:
       return state;
   }

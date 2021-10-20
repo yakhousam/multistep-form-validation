@@ -1,33 +1,36 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { MultiStepForm } from "../MultiStepFrom";
-import { onSubmit as mockedOnSubmit } from "../form-utils/onSubmit";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import { store } from "../../../redux/store";
+import { createStore } from "redux";
+import { reducer } from "../../../redux/reducer";
 
-jest.mock("../form-utils/initialValues.js", () => ({
-  initialValues: {
-    location: "here",
-    firstName: "my first name",
-    lastName: "my last name",
-    license: "my license",
-    expired: false,
-    vehicle: "",
-  },
+const initialValues = {
+  location: "here",
+  firstName: "jhon",
+  lastName: "doe",
+  license: "4267886",
+  expired: false,
+  vehicle: "",
+};
+
+const mockedOnSubmit = jest.fn();
+
+jest.mock("../../../hooks/useOnSubmit.js", () => ({
+  useOnSubmit: () => ({ onSubmit: mockedOnSubmit }),
 }));
 
-jest.mock("../form-utils/onSubmit.js", () => ({
-  onSubmit: jest.fn(),
-}));
-
-const StepVehicle = () => (
-  <MemoryRouter initialEntries={["/vehicle"]}>
-    <Provider store={store}>
-      <MultiStepForm />
-    </Provider>
-  </MemoryRouter>
-);
+const StepVehicle = () => {
+  const store = createStore(reducer, initialValues);
+  return (
+    <MemoryRouter initialEntries={["/vehicle"]}>
+      <Provider store={store}>
+        <MultiStepForm />
+      </Provider>
+    </MemoryRouter>
+  );
+};
 
 describe("component StepVehicle", () => {
   test("render", () => {
@@ -47,6 +50,10 @@ describe("component StepVehicle", () => {
     userEvent.click(screen.getByText(/next/i));
     await waitFor(() => {
       expect(mockedOnSubmit).toHaveBeenCalled();
+    });
+    expect(mockedOnSubmit.mock.calls[0][0]).toEqual({
+      ...initialValues,
+      vehicle,
     });
   });
 

@@ -1,35 +1,24 @@
 import styles from "./Form.module.css";
-import { useDispatch } from "react-redux";
 
-import {
-  Switch,
-  Route,
-  Redirect,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Formik, Form } from "formik";
-import { initialValues, validation, onSubmit } from "./form-utils";
 import { StepLocation } from "./StepLocation";
 import { StepDriver } from "./StepDriver";
 import { StepVehicle } from "./StepVehicle";
+import { useOnSubmit } from "../../hooks/useOnSubmit";
+import { useValidation } from "../../hooks/useValidation";
 
 export function MultiStepForm() {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-  const path = location.pathname;
+  const initialValues = useSelector((state) => state);
+  const { onSubmit } = useOnSubmit();
+  const { validation } = useValidation();
 
-  const handleValidation = () => validation(path);
-
-  const handleSubmit = (values, formikBag) => {
-    onSubmit(values, formikBag, history, path, dispatch);
-  };
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={handleValidation}
-      onSubmit={handleSubmit}
+      validationSchema={validation}
+      onSubmit={onSubmit}
     >
       {({ values }) => (
         <Form className={styles.form}>
@@ -38,16 +27,10 @@ export function MultiStepForm() {
               <StepLocation />
             </Route>
             <Route path="/driver">
-              {!values.location ? <Redirect to="/" /> : <StepDriver />}
+              <StepDriver values={values} />
             </Route>
             <Route path="/vehicle">
-              {!values.location ? (
-                <Redirect to="/" />
-              ) : !values.firstName || !values.license ? (
-                <Redirect to="/driver" />
-              ) : (
-                <StepVehicle />
-              )}
+              <StepVehicle values={values} />
             </Route>
           </Switch>
         </Form>
