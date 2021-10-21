@@ -17,6 +17,7 @@ export function useOnSubmit() {
         return history.push("/vehicle");
       default: {
         dispatch({ type: "SAVE_FORM", values });
+        dispatch({ type: "POST_DRIVER_DATA", values, history });
       }
     }
   };
