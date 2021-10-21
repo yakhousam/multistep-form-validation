@@ -1,9 +1,11 @@
 import userEvent from "@testing-library/user-event";
 import { MultiStepForm } from "./MultiStepFrom";
 import { render, screen, waitFor } from "@testing-library/react";
+import { createStore } from "redux";
+import { reducer } from "../../redux/reducer";
 import { Provider } from "react-redux";
-import { store } from "../../redux/store";
 import { MemoryRouter } from "react-router";
+import * as hooks from "../../hooks/useOnSubmit";
 
 const values = {
   location: "heaven",
@@ -14,35 +16,39 @@ const values = {
   vehicle: "tesla",
 };
 
-describe.skip("component MultiStepFrom", () => {
-  test("fill the form and sumbmit the values", async () => {
-    // const fn = api.onSubmit;
-    // api.onSubmit = jest.fn();
+function Wrapper({ route, children }) {
+  const store = createStore(reducer, values);
+  return (
+    <MemoryRouter initialEntries={[`${route}`]}>
+      <Provider store={store}>{children}</Provider>
+    </MemoryRouter>
+  );
+}
+
+describe("component MultiStepFrom", () => {
+  test("should submit the form", async () => {
+    const mockedOnSubmit = jest.fn();
+    const useOnSubmit = hooks.useOnSubmit;
+    hooks.useOnSubmit = () => ({ onSubmit: mockedOnSubmit });
     render(
-      <MemoryRouter initialEntries={["/vehicle"]}>
-        <Provider store={store}>
-          <MultiStepForm />
-        </Provider>
-      </MemoryRouter>
+      <Wrapper route="/vehicle">
+        <MultiStepForm />
+      </Wrapper>
     );
-    // screen.debug()
     userEvent.click(await screen.findByText(/next/i));
 
     await waitFor(() => {
-      // expect(api.onSubmit).toHaveBeenCalled();
-      // expect(api.onSubmit.mock.calls[0][0]).toEqual(values);
-      // console.log(api.onSubmit.mock.calls[0][0])
+      expect(mockedOnSubmit).toHaveBeenCalled();
+      expect(mockedOnSubmit.mock.calls[0][0]).toEqual(values);
     });
-    // api.onSubmit = fn;
+    hooks.useOnSubmit = useOnSubmit;
   });
 
   test("navigation forward", async () => {
     render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Provider store={store}>
-          <MultiStepForm />
-        </Provider>
-      </MemoryRouter>
+      <Wrapper route="/">
+        <MultiStepForm />
+      </Wrapper>
     );
     expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent(
       /start with your location/i
@@ -71,11 +77,9 @@ describe.skip("component MultiStepFrom", () => {
 
   test("navigation backward", async () => {
     render(
-      <MemoryRouter initialEntries={["/vehicle"]}>
-        <Provider store={store}>
-          <MultiStepForm />
-        </Provider>
-      </MemoryRouter>
+      <Wrapper route="/vehicle">
+        <MultiStepForm />
+      </Wrapper>
     );
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       /Please enter your vehicle/i

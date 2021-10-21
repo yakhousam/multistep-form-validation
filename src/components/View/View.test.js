@@ -2,11 +2,12 @@ import { MemoryRouter } from "react-router";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { View } from "./View";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { store } from "../../redux/store";
-// import * as form from "../MultiStepForm/form-utils/initialValues";
+import { reducer } from "../../redux/reducer";
 
-describe.skip("component/View", () => {
+describe("component/View", () => {
   test("cannot go to driver step or to vehicle step if step location is not completed", async () => {
     render(
       <Provider store={store}>
@@ -35,14 +36,15 @@ describe.skip("component/View", () => {
   });
 
   test("cannot go to vehicle step if step driver is not completed", async () => {
-    // form.initialValues = {
-    //   location: "here",
-    //   firstName: "",
-    //   lastName: "",
-    //   license: "",
-    //   expired: false,
-    //   vehicle: "",
-    // };
+    const initialValues = {
+      location: "here",
+      firstName: "",
+      lastName: "",
+      license: "",
+      expired: false,
+      vehicle: "",
+    };
+    const store = createStore(reducer, initialValues);
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/vehicle"]}>
