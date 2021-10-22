@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { createStore } from "redux";
 import { reducer } from "../../redux/reducer";
 import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import * as hooks from "../../hooks/useOnSubmit";
 
 const values = {

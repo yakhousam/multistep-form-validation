@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import { MultiStepForm } from "../MultiStepFrom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";

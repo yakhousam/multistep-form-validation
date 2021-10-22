@@ -1,4 +1,4 @@
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { render, screen } from "@testing-library/react";
 

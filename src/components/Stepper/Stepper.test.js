@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import { Stepper, steps } from "./Stepper";
 
 const wrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;

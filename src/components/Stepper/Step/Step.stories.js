@@ -1,4 +1,4 @@
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import { Step } from "./Step";
 import { FaMapMarkerAlt } from "react-icons/fa";
 

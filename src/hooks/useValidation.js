@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import * as yup from "yup";
 
 export const stepLocationSchema = yup.object().shape({

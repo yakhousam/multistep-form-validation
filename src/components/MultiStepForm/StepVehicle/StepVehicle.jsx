@@ -2,7 +2,7 @@ import stepStyles from "../Steps.module.css";
 import { ErrorMessage, Field } from "formik";
 import { Navigation } from "../Navigation";
 import { useValidation } from "../../../hooks/useValidation";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 
 export function StepVehicle({ values }) {
   const { schema } = useValidation();

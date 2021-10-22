@@ -1,4 +1,4 @@
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import { Stepper } from "./Stepper";
 
 export default {

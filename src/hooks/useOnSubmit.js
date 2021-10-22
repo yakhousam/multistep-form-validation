@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 
 export function useOnSubmit() {
   const dispatch = useDispatch();
