@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { View } from "./components/View";
-import ThankYou from "./ThankYou";
+import { ThankyouPage } from "./ThankYou";
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/thankyou">
-          <ThankYou />
+        <Route exact path="/thankyou">
+          <ThankyouPage />
         </Route>
         <View />
       </Switch>
