@@ -20,8 +20,9 @@ export function MultiStepForm() {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      {({ values }) => (
+      {({ values, touched }) => (
         <Form className={styles.form}>
+          {console.log(touched)}
           <Switch>
             <Route exact path="/">
               <StepLocation />
