@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# multi-step form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+a multi-step form with field validation
 
-## [Live version](https://helpful-clafoutis-7fd723.netlify.app)
+Formik, Yup, Redux, Redux-Saga, jest, rtl, cypress
+
+
+ [Live version](https://helpful-clafoutis-7fd723.netlify.app)
 
